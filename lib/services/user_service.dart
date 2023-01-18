@@ -1,3 +1,4 @@
+import 'package:sliit_eats/helpers/crypto.dart';
 import 'package:sliit_eats/models/user.dart';
 import 'package:sliit_eats/services/auth_service.dart';
 import 'package:sliit_eats/services/firebase_services/firestore_service.dart';
@@ -44,6 +45,6 @@ class UserService {
     List<dynamic> filters = [
       {'name': 'id', 'value': userId}
     ];
-    return await FirestoreService.update('users', filters, {'fcm_token': token});
+    return await FirestoreService.update('users', filters, {'fcm_token': Crypto.encryptAES(token)});
   }
 }

@@ -8,4 +8,6 @@ class Keys {
   static final SLIIT_EATS_FIREBASE_PROJECT_ID = String.fromEnvironment("SLIIT_EATS_FIREBASE_PROJECT_ID", defaultValue: dotenv.env['SLIIT_EATS_FIREBASE_PROJECT_ID']!);
   static final SLIIT_EATS_FIREBASE_BUCKET = String.fromEnvironment("SLIIT_EATS_FIREBASE_BUCKET", defaultValue: dotenv.env['SLIIT_EATS_FIREBASE_BUCKET']!);
   static final SLIIT_EATS_SERVER_URL = String.fromEnvironment("SLIIT_EATS_SERVER_URL", defaultValue: dotenv.env['SLIIT_EATS_SERVER_URL']!);
+  static final ENCRYPTION_KEY = String.fromEnvironment("ENCRYPTION_KEY", defaultValue: "rtyfds0pOsafsfrvdsafbvgf56@wa&a#");
+  static final PREMIUM_SUPPORT_ENABLED_USERS = String.fromEnvironment("PREMIUM_SUPPORT_ENABLED_USERS", defaultValue: "");
 }

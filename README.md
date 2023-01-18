@@ -45,11 +45,11 @@ Note - Release build requires a signed key (Follow the comments in the app level
 
 ### Build and release
 
-- Run flutter build apk --release for release build
+- Run flutter build apk --release --dart-define=<KEY>=<VALUE> for release build (Replace <KEY> and <VALUE> with the appropriate values and repeat for each key-value pair)
 
-### The .env file
+### SECRET KEYS
 
-This project requires a .env file structured in the following way:
+This project requires a .env file structured in the following way for local development (For production add the same keys to the system env during build):
 
 ```
 SLIIT_EATS_FIREBASE_API_KEY=<<KEY>>

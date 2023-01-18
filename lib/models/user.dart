@@ -1,3 +1,5 @@
+import 'package:sliit_eats/helpers/crypto.dart';
+
 class UserModel {
   final String userId;
   final String username;
@@ -19,7 +21,7 @@ class UserModel {
       userType: doc.data()['user_type'] != null ? doc.data()['user_type'] : null,
       canteenId: doc.data()['canteen_id'] != null ? doc.data()['canteen_id'] : null,
       isActive: doc.data()['is_active'],
-      fcmToken: doc.data()['fcm_token'] != null ? doc.data()['fcm_token'] : null,
+      fcmToken: doc.data()['fcm_token'] != null ? Crypto.decryptAES(doc.data()['fcm_token']) : null,
     );
   }
 }

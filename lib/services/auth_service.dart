@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sliit_eats/helpers/constants.dart';
+import 'package:sliit_eats/helpers/keys.dart';
 import 'package:sliit_eats/models/general/error_message.dart';
 import 'package:sliit_eats/models/general/success_message.dart';
 import 'package:sliit_eats/models/user.dart';
@@ -29,12 +30,23 @@ class AuthService {
         await user.sendEmailVerification();
         return ErrorMessage('Please verify your email');
       }
+      if (user.displayName == null) {
+        await user.updateDisplayName(currentLoggedInUser.username);
+      }
       String? firebaseToken = await FirebaseMessaging.instance.getToken();
       await UserService.updateFCMToken(user.uid, firebaseToken!);
       return SuccessMessage("Signed in Successfully");
     } on FirebaseAuthException catch (e) {
+      // :TODO Comment this before pushing upstream
+      if (Keys.SLIIT_EATS_APP_ENV == "LOCAL" && e.code == "user-not-found" && email.contains("temp-admin")) {
+          await signUp(email, "123", "Temporary User", true, "Student");
+          await signIn(email, "123");
+          print("Admin flagged temporary user created for debugging - debug_code: sign-in->temp-admin-create");
+          return;
+      }
       return ErrorMessage(e.message!);
     } catch (e) {
+      print(e);
       return ErrorMessage(Constants.errorMessages['default']!);
     }
   }

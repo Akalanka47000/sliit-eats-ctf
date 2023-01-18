@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^1.11.0
   firebase_auth: ^3.3.5
   cloud_firestore: ^3.1.6
+  encrypt: ^5.0.1
   enhanced_http: 2.0.0
   firebase_storage: ^10.2.5
   firebase_messaging: ^11.2.5

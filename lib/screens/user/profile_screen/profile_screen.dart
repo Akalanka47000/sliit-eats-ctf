@@ -6,6 +6,7 @@ import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sliit_eats/helpers/cache_service.dart';
 import 'package:sliit_eats/helpers/colors.dart';
+import 'package:sliit_eats/helpers/keys.dart';
 import 'package:sliit_eats/helpers/state_helpers.dart';
 import 'package:sliit_eats/routes/app_routes.dart';
 import 'package:sliit_eats/screens/user/profile_screen/components/change_password_modal.dart';
@@ -95,7 +96,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              user.displayName!,
+                              user.displayName != null ? user.displayName! : "Display Name",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -191,7 +192,27 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         await launch('https://github.com/sliit-foss/sliit-eats/releases');
                       },
                     ),
-                    SizedBox(
+                    Keys.PREMIUM_SUPPORT_ENABLED_USERS.split(",").contains(user.uid)
+                        ? Column(
+                            children: [
+                              SizedBox(
+                                height: 4,
+                              ),
+                              InfoCard(
+                                title: "Premium Support",
+                                subtitle: "+94763412876",
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10)),
+                                showArrow: true,
+                                onArrowTap: () async {
+                                  await launch('tel://+94763412876');
+                                },
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          )
+                        : SizedBox(
                       height: 15,
                     ),
                     GestureDetector(
