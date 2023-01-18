@@ -45,6 +45,7 @@ class UserService {
     List<dynamic> filters = [
       {'name': 'id', 'value': userId}
     ];
+    // We encrypt the token before storing it in the db as it is a sensitive piece of information
     return await FirestoreService.update('users', filters, {'fcm_token': Crypto.encryptAES(token)});
   }
 }
