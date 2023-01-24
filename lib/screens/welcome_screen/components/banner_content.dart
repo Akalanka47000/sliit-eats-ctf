@@ -64,7 +64,7 @@ class _BannerContentState extends State<BannerContent>
                   : 20),
           child: Container(
             height: MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height * 0.35
+                ? MediaQuery.of(context).size.height * 0.31
                 : MediaQuery.of(context).size.height * 0.40,
             width: MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.height * 0.55

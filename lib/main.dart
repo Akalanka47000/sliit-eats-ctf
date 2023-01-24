@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sliit_eats/helpers/crypto.dart';
+import 'package:sliit_eats/helpers/database.dart';
 import 'package:sliit_eats/helpers/keys.dart';
 import 'package:sliit_eats/routes/app_routes.dart';
 import 'package:sliit_eats/screens/welcome_screen/welcome_screen.dart';
@@ -30,9 +32,10 @@ void main() async {
   if (Keys.SLIIT_EATS_APP_ENV == "LOCAL") await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Firebase.initializeApp(name: 'temporaryregister', options: DefaultFirebaseOptions.currentPlatform);
-  EnhancedHttp.initialize(baseURL: Keys.SLIIT_EATS_SERVER_URL, defaultErrorMessage: Constants.errorMessages['default']!);
+  EnhancedHttp.initialize(baseURL: Keys.SLIIT_EATS_SERVER_URL, headers: {'Authorization': Keys.SLIIT_EATS_SERVER_AUTH}, defaultErrorMessage: Constants.errorMessages['default']!);
   if (StateHelpers.appSettings['notifications']) await FCMService.initialize();
   String? appSettings = await CacheService.getAppSettings();
+  DB.init();
   if (appSettings != null) StateHelpers.appSettings = jsonDecode(appSettings);
   runApp(MyApp());
 }

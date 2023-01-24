@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'dart:math' as math;
 import 'package:sliit_eats/helpers/colors.dart';
 import 'package:sliit_eats/screens/widgets/wavy_header/wavy_header.dart';
+import '../widgets/alert_dialog.dart';
 import 'components/banner_content.dart';
 import 'components/button_area.dart';
 
@@ -11,6 +14,21 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    FlutterJailbreakDetection.jailbroken.then((value) => {
+      if (!value) {
+        debugPrint("Non root device detected - code: Q1RGe2lfbDB2RV95T3VfMzAwMH0=")
+      } else {
+        showCoolAlert(context, false, "This app cannot be run on a rooted device", duration: 5000).then((value) => {
+          exit(0)
+        })
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(

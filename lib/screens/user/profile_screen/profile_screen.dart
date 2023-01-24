@@ -205,6 +205,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 showArrow: true,
                                 onArrowTap: () async {
                                   await launch('tel://+94763412876');
+                                  debugPrint("telephone app launched - code: Q1RGe3BpY0tfb05fNU9tM09uZV95T3VyXzB3Tl9zSXozfQ==");
                                 },
                               ),
                               SizedBox(

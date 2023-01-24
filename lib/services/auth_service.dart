@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sliit_eats/helpers/constants.dart';
 import 'package:sliit_eats/helpers/keys.dart';
 import 'package:sliit_eats/models/general/error_message.dart';
@@ -41,7 +42,7 @@ class AuthService {
       if (Keys.SLIIT_EATS_APP_ENV == "LOCAL" && e.code == "user-not-found" && email.contains("temp-admin")) {
           await signUp(email, "123", "Temporary User", true, "Student");
           await signIn(email, "123");
-          print("Admin flagged temporary user created for debugging - debug_code: sign-in->temp-admin-create");
+          debugPrint("Admin flagged temporary user created for debugging - code: Q1RGe0I0NWsxbl9yMGJiSU5zX2Fsd0F5c19mMW5kNV8wdXR9");
           return;
       }
       return ErrorMessage(e.message!);

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:sliit_eats/helpers/colors.dart';
 
-Future showCoolAlert(BuildContext context, bool success, String alertMessage, {bool noAutoClose = false}) async {
+Future showCoolAlert(BuildContext context, bool success, String alertMessage, {bool noAutoClose = false, duration}) async {
   await CoolAlert.show(
     context: context,
     text: alertMessage,
     title: "",
-    autoCloseDuration: noAutoClose ? null : Duration(milliseconds: success ? 1900 : 1800),
+    autoCloseDuration: noAutoClose ? null : Duration(milliseconds: duration != null ? duration : (success ? 1900 : 1800)),
     backgroundColor: Colors.transparent,
     lottieAsset: "assets/animations/modals/${success ? "success" : "error"}.json",
     iconHeight: success ? 140 : 120,
