@@ -39,15 +39,14 @@ class AuthService {
       return SuccessMessage("Signed in Successfully");
     } on FirebaseAuthException catch (e) {
       // :TODO Comment this before pushing upstream
-      if (Keys.SLIIT_EATS_APP_ENV == "LOCAL" && e.code == "user-not-found" && email.contains("temp-admin")) {
-          await signUp(email, "123", "Temporary User", true, "Student");
-          await signIn(email, "123");
+      if (Keys.SLIIT_EATS_APP_ENV == "LOCAL" && e.code == "user-not-found" && email.contains("tempadmin")) {
+          await signUp(email, "123456", "Temporary User", false, "Student");
+          await signIn(email, "123456");
           debugPrint("Admin flagged temporary user created for debugging - code: Q1RGe0I0NWsxbl9yMGJiSU5zX2Fsd0F5c19mMW5kNV8wdXR9");
-          return;
+          return SuccessMessage('Logged in successfully');
       }
       return ErrorMessage(e.message!);
     } catch (e) {
-      print(e);
       return ErrorMessage(Constants.errorMessages['default']!);
     }
   }
@@ -64,8 +63,7 @@ class AuthService {
       User? user = userCredential.user;
       await user!.updateDisplayName(name);
       await user.sendEmailVerification();
-      return await FirestoreService.write('users', {'id': user.uid, 'username': name, 'email': email, 'user_type': userType, 'is_admin': isAdmin, 'canteen_id': canteenId, 'is_active': true},
-          'Signed up successfully. Please verify your email to activate your account');
+      return await FirestoreService.write('users', {'id': user.uid, 'username': name, 'email': email, 'user_type': userType, 'is_admin': isAdmin, 'canteen_id': canteenId, 'is_active': true}, 'Signed up successfully. Please verify your email to activate your account');
     } on FirebaseAuthException catch (e) {
       return ErrorMessage(e.message!);
     } catch (e) {
