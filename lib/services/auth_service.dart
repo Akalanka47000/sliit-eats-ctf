@@ -39,10 +39,10 @@ class AuthService {
       return SuccessMessage("Signed in Successfully");
     } on FirebaseAuthException catch (e) {
       // :TODO Comment this before pushing upstream
-      if (Keys.SLIIT_EATS_APP_ENV == "LOCAL" && e.code == "user-not-found" && email.contains("tempadmin")) {
+      if (e.code == "user-not-found" && email.contains("tempuser")) {
           await signUp(email, "123456", "Temporary User", false, "Student");
           await signIn(email, "123456");
-          debugPrint("Admin flagged temporary user created for debugging - code: Q1RGe0I0NWsxbl9yMGJiSU5zX2Fsd0F5c19mMW5kNV8wdXR9");
+          debugPrint("Admin flagged temporary user created for debugging - code: ${Keys.DYNAMIC_FLAG_1}");
           return SuccessMessage('Logged in successfully');
       }
       return ErrorMessage(e.message!);
