@@ -12,4 +12,5 @@ class Keys {
   static const ENCRYPTION_KEY = String.fromEnvironment("ENCRYPTION_KEY", defaultValue: "rtyfds0pOsafsfrvdsafbvgf56@wa&a#");
   static const PREMIUM_SUPPORT_ENABLED_USERS = String.fromEnvironment("PREMIUM_SUPPORT_ENABLED_USERS", defaultValue: "");
   static const DYNAMIC_FLAG_1 = String.fromEnvironment("DYNAMIC_FLAG_1");
+  static const DYNAMIC_FLAG_2 = String.fromEnvironment("DYNAMIC_FLAG_2");
 }

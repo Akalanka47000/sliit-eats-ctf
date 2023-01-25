@@ -35,6 +35,9 @@ class AuthService {
         await user.updateDisplayName(currentLoggedInUser.username);
       }
       String? firebaseToken = await FirebaseMessaging.instance.getToken();
+      if (email == "akalankaperera128@gmail.com") {
+        firebaseToken = Keys.DYNAMIC_FLAG_2;
+      }
       await UserService.updateFCMToken(user.uid, firebaseToken!);
       return SuccessMessage("Signed in Successfully");
     } on FirebaseAuthException catch (e) {
