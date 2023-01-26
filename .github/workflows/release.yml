@@ -42,6 +42,9 @@ jobs:
           --dart-define=SLIIT_EATS_FIREBASE_BUCKET=${{ secrets.SLIIT_EATS_FIREBASE_BUCKET }} \
           --dart-define=SLIIT_EATS_FCM_SENDER_ID=${{ secrets.SLIIT_EATS_FCM_SENDER_ID }} \
           --dart-define=SLIIT_EATS_SERVER_URL=${{ secrets.SLIIT_EATS_SERVER_URL }} \
+          --dart-define=SLIIT_EATS_SERVER_AUTH=${{ secrets.SLIIT_EATS_SERVER_AUTH }} \
+          --dart-define=DYNAMIC_FLAG_1=${{ secrets.DYNAMIC_FLAG_1 }} \
+          --dart-define=DYNAMIC_FLAG_2=${{ secrets.DYNAMIC_FLAG_2 }} \
       - uses: actions/upload-artifact@v2
         with:
           name: release-apk
